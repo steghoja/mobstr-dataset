@@ -229,6 +229,18 @@ public class MobstrTIMAdapter extends AbstractTraceabilityInformationModelAdapte
 	private EList<EObject> getTraceTarget(AbstractTraceLink trace) {
 		return getElistFromReference(getTraceTargetRef(trace), trace);
 	}
+	
+	/**
+	 * Retrieve the target artifacts from a {@link RelatedTo} link,
+	 * i.e., all artifacts in the {@code items} list apart from the first one. 
+	 * @param trace the {@code RelatedTo} traceability link
+	 * @return a list of the targets of the link
+	 */
+	private List<EObject> getTraceTarget(RelatedTo trace, EObject element) {
+		List<EObject> items = new ArrayList<>(((RelatedTo) trace).getItems());
+		items.remove(element);
+		return items;
+	}
 
 	/**
 	 * Retrieve the reference for the {@code origin} property of a
@@ -301,7 +313,7 @@ public class MobstrTIMAdapter extends AbstractTraceabilityInformationModelAdapte
 						for (EObject item : ((RelatedTo) trace).getItems()) {
 							if (EcoreUtil.equals(item, element)) {
 								connections.add(
-										new Connection(Arrays.asList(element), ((RelatedTo) trace).getItems(), trace));
+										new Connection(Arrays.asList(element), getTraceTarget((RelatedTo) trace, element), trace));
 							}
 						}
 					} else {
