@@ -14,10 +14,10 @@
             genModel="model/mobstr-tim.xcore"/>
    </extension>
    <extension
-         point="org.eclipse.capra.configuration.traceabilityMetaModel">
-      <TraceabilityMetaModelAdapter
+         point="org.eclipse.capra.configuration.traceabilityInformationModel">
+      <TraceabilityInformationModelAdapter
             class="org.panorama.research.mobstr.tim.MobstrTIMAdapter">
-      </TraceabilityMetaModelAdapter>
+      </TraceabilityInformationModelAdapter>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">

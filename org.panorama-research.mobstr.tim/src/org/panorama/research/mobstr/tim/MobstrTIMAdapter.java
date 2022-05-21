@@ -6,10 +6,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.capra.core.adapters.AbstractMetaModelAdapter;
+import org.eclipse.capra.core.adapters.AbstractTraceabilityInformationModelAdapter;
 import org.eclipse.capra.core.adapters.Connection;
-import org.eclipse.capra.core.adapters.TraceMetaModelAdapter;
-import org.eclipse.capra.core.adapters.TracePersistenceAdapter;
+import org.eclipse.capra.core.adapters.IPersistenceAdapter;
+import org.eclipse.capra.core.adapters.ITraceabilityInformationModelAdapter;
 import org.eclipse.capra.core.helpers.ArtifactHelper;
 import org.eclipse.capra.core.helpers.EditingDomainHelper;
 import org.eclipse.capra.core.helpers.ExtensionPointHelper;
@@ -33,7 +33,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  * @author Jan-Philipp Steghöfer
  *
  */
-public class MobstrTIMAdapter extends AbstractMetaModelAdapter implements TraceMetaModelAdapter {
+public class MobstrTIMAdapter extends AbstractTraceabilityInformationModelAdapter implements ITraceabilityInformationModelAdapter {
 
 	private static final int DEFAULT_INITIAL_TRANSITIVITY_DEPTH = 1;
 
@@ -109,7 +109,7 @@ public class MobstrTIMAdapter extends AbstractMetaModelAdapter implements TraceM
 			}
 		}
 
-		TracePersistenceAdapter persistenceAdapter = ExtensionPointHelper.getTracePersistenceAdapter().get();
+		IPersistenceAdapter persistenceAdapter = ExtensionPointHelper.getPersistenceAdapter().get();
 		EObject artifactModel = persistenceAdapter.getArtifactWrappers(new ResourceSetImpl());
 		ArtifactHelper artifactHelper = new ArtifactHelper(artifactModel);
 
@@ -402,9 +402,10 @@ public class MobstrTIMAdapter extends AbstractMetaModelAdapter implements TraceM
 				throw new IllegalStateException("Removing trace links was interrupted.", e);
 			}
 
-			TracePersistenceAdapter persistenceAdapter = ExtensionPointHelper.getTracePersistenceAdapter().get();
-			persistenceAdapter.saveTracesAndArtifacts(tModel,
-					persistenceAdapter.getArtifactWrappers(new ResourceSetImpl()));
+			IPersistenceAdapter persistenceAdapter = ExtensionPointHelper.getPersistenceAdapter().get();
+			persistenceAdapter.saveModels(tModel,
+					persistenceAdapter.getArtifactWrappers(EditingDomainHelper.getResourceSet()),
+					persistenceAdapter.getMetadataContainer(EditingDomainHelper.getResourceSet()));
 		}
 	}
 
