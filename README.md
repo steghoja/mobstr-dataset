@@ -113,6 +113,9 @@ Please make sure that you have JDK 11 installed and that this is the Java runtim
 
 In case you get an error that the wrong APP4MC version is installed, please open `mobstr.amxmi` in a text editor and change the model version to the APP4MC version you have installed (usually either 0.9.7 or 1.0.0, depending on the version of Eclipse that you are using and thus the target platform chosen for Eclipse Capra).
 
+### Errors in mobstr-tim.xcore
+
+If you see compilation errors in `mobstr-tim.xcore`, please make sure that the "UML2 Extender SDK" is installed in your Eclipse. That feature contains the genmodels for UML2 which are required for XCore to compile the TIM. It can be found on the release update site.
 
 ## Known Uses
 
