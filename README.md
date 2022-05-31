@@ -67,12 +67,12 @@ The repository also contains a custom traceability information model (TIM) that 
 Use the following instructions to install Eclipse and all necessary components of the MobSTr dataset:  
 
 1. **Download the Eclipse Installer** from [here](https://wiki.eclipse.org/Eclipse_Installer).
-2. **Install Eclipse Capra**
+2. **Install Eclipse Capra and the MobSTr Dataset**
   * Open the Eclipse Installer.
   * If necessary, switch to "Advanced Mode" using the Hamburger menu in the top right corner (if you don't see that menu, you are already in advanced mode).
   * Select "Eclipse for Committers".
   * Select JDK 11 in the list of possible JREs (Note: please make sure that Java 11 is installed locally on your machine. If that is not the case, please download Java 11 from [here](https://adoptopenjdk.net/index.html?variant=openjdk11&jvmVariant=hotspot) and locate it on your hard drive in this step).
-  * The recommended version of Eclipse is *2021-03* at the time of writing. Please select this version from the "Product Version" dropdown menu.
+  * The recommended version of Eclipse is *2022-03* at the time of writing. Please select this version from the "Product Version" dropdown menu.
   * Click Next.
   * On the second page, drag and drop [this link](https://panorama-research.github.io/mobstr-dataset/setup/EclipseCapraForMobSTr.setup) onto the "Eclipse Projects" entry in the list.
   * ***Make sure that the checkbox before the entry "Eclipse Capra for MobSTr" is selected.***
